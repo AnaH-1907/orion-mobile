@@ -12,16 +12,18 @@ const Stack = createStackNavigator();
 
 const App = () => {
     return (
+      
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='Welcome'>
-                <Stack.Screen name="Welcome" component={Welcome} />
-                <Stack.Screen name="Shell" component={Shell} />
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="Exams" component={Exams} />
-                <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Navigator initialRouteName='Shell'>
+                <Stack.Screen name="Welcome" component={Welcome} options={{ headerShown: false }}/>
+                <Stack.Screen name="Shell" component={Shell} options={{ headerShown: false }}/>
+                <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+                <Stack.Screen name="Exams" component={Exams} options={{ headerShown: false }}/>
+                <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }}/>
             </Stack.Navigator>
             <StatusBar style="auto"/>
         </NavigationContainer>
+      
     );
 };
 
