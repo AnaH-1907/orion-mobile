@@ -2,6 +2,11 @@
 	"container": {
 		"width": "100%"
 	},
+	"space-x-4": {
+		"--tw-space-x-reverse": "0",
+		"margin-right": "calc(16rem * calc(1rem * var(--tw-space-x-reverse)))",
+		"margin-left": "calc(1rem * calc(1 - var(--tw-space-x-reverse)))"
+	},
 	"bg-transparent": {
 		"backgroundColor": "transparent"
 	},
