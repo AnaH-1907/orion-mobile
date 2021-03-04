@@ -43,8 +43,9 @@ const ProfileEdit = () => {
           style={{ height: 40, width: 300, borderBottomColor: 'gray', borderBottomWidth	: 1, marginBottom: 30 }}
           onChangeText={(text) => (setName(text))}
           value={name}
-          returnKeyType='next'
+          returnKeyType='done'
           onSubmitEditing={() => saveValueFunction()}
+          clearButtonMode='while-editing'
         />
         <TextInput
           placeholder="Prénom"
@@ -53,11 +54,13 @@ const ProfileEdit = () => {
           value={firstname}
           returnKeyType='done'
           onSubmitEditing={() => saveValueFunction()}
+          clearButtonMode='while-editing'
         />
       </View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
+          saveValueFunction(),
           navigation.goBack();
         }}
       >
