@@ -44,9 +44,8 @@ const Exams = () => {
                     filtered.map((exam, index) => {
                         return(
 
-                            <View style={tailwind('pb-2 items-center m-8')} key={index}>
+                            <View style={tailwind('pb-2 items-center')} key={index}>
                                 <Card containerStyle={tailwind('border-2 rounded-lg')}>
-                                    {/* <Card.Image source={{uri: exam.img}} style={tailwind('h-56 w-72')} /> */}
                                     <Image source={exam.img} style={tailwind('h-56 w-72')}/>
                                     <Text style={tailwind('mt-3 p-2 font-medium text-xl')}>{exam.title}</Text>
                                     <View style={tailwind('flex-row items-center')}>
