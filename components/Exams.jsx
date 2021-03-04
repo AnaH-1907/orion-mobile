@@ -1,8 +1,9 @@
-import {View, Text, TextInput, ScrollView, Image} from 'react-native';
+import {View, Text, TextInput, ScrollView, Image, TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import { tailwind, getColor } from '../lib/tailwind';
 import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 //warning de la console à cause du require des image: pour des images d'internet et pas images en assets
 
@@ -11,7 +12,7 @@ const exams = [
     {img: require('../images/react_logo.jpg'), title: "Quiz React", creation: "Créer il y a 24 jours", totalQ: "15 questions"},
 ];
 
-const Exams = () => {
+const Exams = ({navigation}) => {
 
     const [input, setInput] = useState("");
     const [filtered, setFiltered] = useState(exams);
@@ -38,6 +39,13 @@ const Exams = () => {
                     value={input} />
             </View>
 
+            <TouchableOpacity 
+            style={tailwind('rounded-full h-16 w-16 flex items-center justify-center bg-gray-700 absolute bottom-0 right-0 z-40 mb-2 mr-2')}
+            onPress={() => {navigation.push('add-quizz')}}
+            >
+                <FontAwesome5 name="plus" size={32} color="white" />
+            </TouchableOpacity>
+
             <ScrollView>
 
                 {
@@ -59,7 +67,8 @@ const Exams = () => {
                     })
                 }
 
-            </ScrollView>    
+            </ScrollView> 
+
         </>
     );
 };
