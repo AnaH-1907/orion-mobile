@@ -1,20 +1,20 @@
-import {View, Text, TextInput, ScrollView} from 'react-native';
+import {View, Text, TextInput, ScrollView, Image} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import { tailwind } from '../lib/tailwind';
-import { FontAwesome } from '@expo/vector-icons';
+import { tailwind, getColor } from '../lib/tailwind';
+import { Ionicons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements';
 
+//warning de la console à cause du require des image: pour des images d'internet et pas images en assets
+
 const exams = [
-    {img: "asset:/linux_logo.png", title: "Quiz Linux", creation: "Créer il y a 21 jours", totalQ: "20 questions"},
-    {img: "asset:/lreact_logo.png", title: "Quiz React", creation: "Créer il y a 24 jours", totalQ: "15 questions"},
+    {img: require('../images/linux_logo.jpg'), title: "Quiz Linux", creation: "Créer il y a 21 jours", totalQ: "20 questions"},
+    {img: require('../images/react_logo.jpg'), title: "Quiz React", creation: "Créer il y a 24 jours", totalQ: "15 questions"},
 ];
 
 const Exams = () => {
 
     const [input, setInput] = useState("");
     const [filtered, setFiltered] = useState(exams);
-
-
 
     useEffect(() => {
         setFiltered(
@@ -32,7 +32,7 @@ const Exams = () => {
             </View>
 
             <View style={tailwind('m-4 bg-gray-200 rounded-full h-12 items-center flex-row px-4')}>
-                <FontAwesome name="search" size={24} color="black" style={tailwind('p-10')}/>
+                <Ionicons name="search" size={24} color={getColor('gray-400')}/>
                 <TextInput style={tailwind('flex-1 ml-4 w-full')}
                     onChangeText={(t) => setInput(t)}
                     value={input} />
@@ -46,7 +46,8 @@ const Exams = () => {
 
                             <View style={tailwind('pb-2 items-center m-8')} key={index}>
                                 <Card containerStyle={tailwind('border-2 rounded-lg')}>
-                                    <Card.Image source={{uri: exam.img}} style={tailwind('h-56 w-72')} />
+                                    {/* <Card.Image source={{uri: exam.img}} style={tailwind('h-56 w-72')} /> */}
+                                    <Image source={exam.img} style={tailwind('h-56 w-72')}/>
                                     <Text style={tailwind('mt-3 p-2 font-medium text-xl')}>{exam.title}</Text>
                                     <View style={tailwind('flex-row items-center')}>
                                         <Text style={tailwind('p-2')}>{exam.creation}</Text>
