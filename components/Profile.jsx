@@ -7,6 +7,7 @@ const Profile = ({navigation}) => {
 
   const [nameEdited, setNameEdited] = useState('');
   const [firstnameEdited, setFirstnameEdited] = useState('');
+  const [avatarEdited, setAvatarEdited] = useState('https://i.pravatar.cc/100');
 
   useEffect(() => {
     navigation.addListener('focus', () => {
@@ -15,9 +16,10 @@ const Profile = ({navigation}) => {
   }, [navigation]);
 
   const getValueFunction = () => {
-    AsyncStorage.multiGet(["name", "firstname"]).then(response => {
+    AsyncStorage.multiGet(["name", "firstname", "image"]).then(response => {
       setNameEdited(response[0][1]);
       setFirstnameEdited(response[1][1]);
+      setAvatarEdited(response[2][1]);
     })
   }
 
@@ -28,7 +30,7 @@ const Profile = ({navigation}) => {
         <Image
           style={styles.avatar}
           source={{
-            uri: 'https://i.pravatar.cc/100?u=orangedurand',
+            uri: avatarEdited,
           }}
         />
         <Text style={styles.name}>{nameEdited} {firstnameEdited}</Text>

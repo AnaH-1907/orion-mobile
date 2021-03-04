@@ -1,7 +1,8 @@
-import {View, Text, Image, TouchableOpacity, StyleSheet, TextInput} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, Image, TouchableOpacity, StyleSheet, TextInput, Platform} from 'react-native';
+import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
+import Avatar from "./Avatar";
 
 const ProfileEdit = () => {
 
@@ -9,6 +10,7 @@ const ProfileEdit = () => {
 
   const [name, setName] = useState('');
   const [firstname, setFirstname] = useState('');
+  const [avatar, setAvatar] = useState(null);
 
   const saveValueFunction = () => {
     if (name || firstname) {
@@ -20,17 +22,21 @@ const ProfileEdit = () => {
     }
   };
 
+  const getValueFunction = () => {
+    AsyncStorage.multiGet(["name", "firstname", "image"]).then(response => {
+      setName(response[0][1]);
+      setFirstname(response[1][1]);
+      setAvatar(response[2][1]);
+    })
+  }
+
+  useEffect(() => {
+    getValueFunction();
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.profile}>
-        <Image
-          style={styles.avatar}
-          source={{
-            uri: 'https://i.pravatar.cc/100?u=orangedurand',
-          }}
-        />
-        <Text style={styles.text}>Changer la photo de profil</Text>
-      </View>
+      <Avatar avatar={avatar}/>
       <View>
         <TextInput
           placeholder="Nom"
